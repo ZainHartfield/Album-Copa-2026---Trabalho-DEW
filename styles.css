@@ -1,0 +1,644 @@
+/*
+============================================
+ARQUIVO CSS - COM ESTILOS DO MODAL
+============================================
+
+Este arquivo contém todos os estilos CSS do projeto,
+incluindo os novos estilos para o modal/popup.
+*/
+
+/*
+============================================
+PASSO 1: RESET E VARIÁVEIS GLOBAIS
+============================================
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Cores da paleta retro */
+    --cor-azul: #1B3A6B;
+    --cor-amarelo: #F4D03F;
+    --cor-vermelho: #E63946;
+    --cor-fundo: #F5F1E8;
+    --cor-branco: #FFFFFF;
+    --cor-cinza: #5A5A5A;
+    --cor-laranja: #FF7F50;
+
+    /* Espaçamentos (medidas relativas) */
+    --espacamento-xs: 0.5rem;
+    --espacamento-sm: 1rem;
+    --espacamento-md: 1.5rem;
+    --espacamento-lg: 2rem;
+    --espacamento-xl: 3rem;
+
+    /* Tamanhos de fonte */
+    --fonte-base: 16px;
+    --fonte-pequena: 0.9rem;
+    --fonte-media: 1.1rem;
+    --fonte-grande: 1.5rem;
+    --fonte-titulo: 2.5rem;
+
+    /* Duração das animações */
+    --duracao-rapida: 0.3s;
+    --duracao-media: 0.6s;
+    --duracao-lenta: 1.5s;
+}
+
+/*
+============================================
+PASSO 2: ESTILOS GLOBAIS (MOBILE FIRST)
+============================================
+*/
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--fonte-base);
+    color: var(--cor-cinza);
+    background-color: var(--cor-fundo);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+============================================
+MODAL/POPUP - ESTILOS
+============================================
+
+IMPORTANTE: O modal tem dois elementos:
+1. modal-backdrop: Fundo escuro
+2. modal: A janela com a figurinha
+
+Ambos começam ocultos (display: none)
+Quando o usuário clica, JavaScript adiciona a classe "ativo"
+que muda para display: block
+*/
+
+/* 
+BACKDROP (Fundo escuro)
+
+O backdrop é um elemento que fica por trás do modal.
+Ele bloqueia a interação com o fundo e cria um efeito visual.
+*/
+.modal-backdrop {
+    /* Começa oculto */
+    display: none;
+
+    /* Position fixed: fica fixo na tela mesmo com scroll */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* Cor preta com transparência (70% opaco) */
+    background: rgba(0, 0, 0, 0.7);
+
+    /* z-index: controla a profundidade (qual elemento fica por cima) */
+    z-index: 999;
+
+    /* Animação de entrada */
+    animation: fadeIn var(--duracao-rapida) ease-out;
+}
+
+/* Quando o backdrop está ativo (visível) */
+.modal-backdrop.ativo {
+    display: block;
+}
+
+/*
+MODAL (Janela com a figurinha)
+
+O modal é a janela que aparece por cima do backdrop.
+Ele contém a imagem em zoom e as informações da figurinha.
+*/
+.modal {
+    /* Começa oculto */
+    display: none;
+
+    /* Position fixed: fica fixo na tela */
+    position: fixed;
+
+    /* Centraliza na tela */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* Estilo visual */
+    background: var(--cor-branco);
+    padding: var(--espacamento-lg);
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+
+    /* Profundidade (fica por cima do backdrop) */
+    z-index: 1000;
+
+    /* Tamanho */
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+
+    /* Animação de entrada */
+    animation: slideIn var(--duracao-media) ease-out;
+}
+
+/* Quando o modal está ativo (visível) */
+.modal.ativo {
+    display: block;
+}
+
+/*
+BOTÃO DE FECHAR (X)
+
+Fica no canto superior direito do modal.
+*/
+.modal-fechar {
+    /* Posicionamento */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    /* Estilo */
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--cor-cinza);
+    cursor: pointer;
+
+    /* Transição suave */
+    transition: transform var(--duracao-rapida) ease-out;
+}
+
+/* Efeito ao passar o mouse */
+.modal-fechar:hover {
+    transform: scale(1.2);
+    color: var(--cor-vermelho);
+}
+
+/* Efeito ao clicar */
+.modal-fechar:active {
+    transform: scale(0.9);
+}
+
+/*
+CONTEÚDO DO MODAL
+
+Organiza a imagem e as informações verticalmente.
+*/
+.modal-conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espacamento-md);
+}
+
+/*
+IMAGEM DO MODAL
+
+A imagem é exibida em tamanho grande (zoom).
+*/
+.modal-imagem {
+    /* Tamanho */
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+
+    /* Estilo */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    /* Animação de entrada */
+    animation: zoomIn var(--duracao-media) ease-out;
+}
+
+/*
+INFORMAÇÕES DO MODAL
+
+Título e raridade da figurinha.
+*/
+.modal-info {
+    text-align: center;
+    width: 100%;
+}
+
+#modalTitulo {
+    /* Tamanho da fonte */
+    font-size: var(--fonte-grande);
+    /* Cor */
+    color: var(--cor-azul);
+    /* Espaçamento abaixo */
+    margin-bottom: var(--espacamento-xs);
+    /* Peso da fonte */
+    font-weight: 700;
+}
+
+.modal-raridade {
+    /* Tamanho da fonte */
+    font-size: var(--fonte-media);
+    /* Cor */
+    color: var(--cor-amarelo);
+    /* Peso da fonte */
+    font-weight: 600;
+}
+
+/*
+============================================
+ANIMAÇÕES DO MODAL
+============================================
+
+Essas animações tornam o modal mais atraente.
+*/
+
+/* Fade In: Desaparece e aparece (usado no backdrop) */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Slide In: Desliza de cima para baixo (usado no modal) */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Zoom In: Aumenta de tamanho (usado na imagem) */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/*
+============================================
+CABEÇALHO (HEADER)
+============================================
+*/
+
+.cabecalho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--espacamento-lg);
+    background: linear-gradient(135deg, var(--cor-azul) 0%, #2D5A8C 100%);
+    color: var(--cor-branco);
+    margin-bottom: var(--espacamento-lg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cabecalho h1 {
+    font-size: var(--fonte-titulo);
+    font-weight: 700;
+    margin-bottom: var(--espacamento-sm);
+}
+
+.cabecalho .descricao {
+    font-size: var(--fonte-media);
+    opacity: 0.9;
+}
+
+/*
+============================================
+NAVEGAÇÃO (NAV) - FILTROS
+============================================
+*/
+
+.navegacao {
+    display: flex;
+    gap: var(--espacamento-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+
+    padding: var(--espacamento-md);
+    margin-bottom: var(--espacamento-lg);
+}
+
+.btn-filtro {
+    padding: var(--espacamento-sm) var(--espacamento-md);
+    background-color: var(--cor-branco);
+    color: var(--cor-azul);
+    border: 2px solid var(--cor-azul);
+    border-radius: 0;
+    font-size: var(--fonte-pequena);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duracao-rapida) ease-out;
+}
+
+.btn-filtro.ativo {
+    background-color: var(--cor-amarelo);
+    color: var(--cor-azul);
+}
+
+.btn-filtro:hover {
+    background-color: var(--cor-amarelo);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/*
+============================================
+CONTEÚDO PRINCIPAL (MAIN)
+============================================
+*/
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 var(--espacamento-md);
+}
+
+/*
+============================================
+SEÇÃO DE ESTATÍSTICAS
+============================================
+*/
+
+.estatisticas {
+    margin-bottom: var(--espacamento-xl);
+}
+
+.estatisticas h2 {
+    font-size: var(--fonte-grande);
+    font-weight: 700;
+    color: var(--cor-azul);
+    margin-bottom: var(--espacamento-md);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espacamento-md);
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--espacamento-md);
+    background-color: var(--cor-branco);
+    border-left: 4px solid var(--cor-amarelo);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform var(--duracao-rapida) ease-out;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+
+.stat-card h3 {
+    font-size: var(--fonte-pequena);
+    color: var(--cor-azul);
+    margin-bottom: var(--espacamento-xs);
+}
+
+.stat-card .numero {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cor-amarelo);
+}
+
+/*
+============================================
+GALERIA DE FIGURINHAS
+============================================
+*/
+
+.galeria {
+    margin-bottom: var(--espacamento-xl);
+}
+
+.galeria h2 {
+    font-size: var(--fonte-grande);
+    font-weight: 700;
+    color: var(--cor-azul);
+    margin-bottom: var(--espacamento-md);
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--espacamento-md);
+}
+
+/*
+FIGURINHA (CARD)
+
+IMPORTANTE: Agora a figurinha tem cursor: pointer
+para indicar que é clicável.
+*/
+
+.figurinha {
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--cor-branco);
+    border: 3px solid var(--cor-azul);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all var(--duracao-rapida) ease-out;
+
+    /* NOVO: Cursor muda para mão (indicando que é clicável) */
+    cursor: pointer;
+
+    animation: fadeIn 0.8s ease-out;
+}
+
+.figurinha[data-raridade="rara"] {
+    border-color: var(--cor-amarelo);
+}
+
+.figurinha[data-raridade="lendaria"] {
+    border-color: var(--cor-vermelho);
+    box-shadow: 0 0 20px rgba(230, 57, 70, 0.3);
+}
+
+.figurinha[data-raridade="iconica"] {
+    border-color: var(--cor-laranja);
+    box-shadow: 0 0 20px rgb(255, 166, 0);
+}
+
+/* Efeito ao passar o mouse */
+.figurinha:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.figurinha-imagem {
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    background: linear-gradient(135deg, var(--cor-amarelo) 0%, #FFD700 100%);
+}
+
+.figurinha-info {
+    padding: var(--espacamento-md);
+}
+
+.figurinha-info h3 {
+    font-size: var(--fonte-media);
+    color: var(--cor-azul);
+    margin-bottom: var(--espacamento-xs);
+}
+
+.figurinha-info .raridade {
+    font-size: var(--fonte-pequena);
+    color: var(--cor-cinza);
+}
+
+.figurinha.oculta {
+    display: none;
+}
+
+/*
+============================================
+SEÇÃO SOBRE
+============================================
+*/
+
+.sobre {
+    margin-bottom: var(--espacamento-xl);
+    background-color: var(--cor-branco);
+    padding: var(--espacamento-lg);
+    border-left: 4px solid var(--cor-azul);
+}
+
+.sobre h2 {
+    font-size: var(--fonte-grande);
+    color: var(--cor-azul);
+    margin-bottom: var(--espacamento-md);
+}
+
+.sobre {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--espacamento-md);
+}
+
+.conceito {
+    padding: var(--espacamento-md);
+    background: linear-gradient(135deg, rgba(244, 208, 63, 0.1) 0%, rgba(27, 58, 107, 0.05) 100%);
+    border-left: 3px solid var(--cor-amarelo);
+}
+
+.conceito h3 {
+    font-size: var(--fonte-media);
+    color: var(--cor-azul);
+    margin-bottom: var(--espacamento-xs);
+}
+
+.conceito p {
+    font-size: var(--fonte-pequena);
+    line-height: 1.6;
+    color: var(--cor-cinza);
+}
+
+/*
+============================================
+RODAPÉ (FOOTER)
+============================================
+*/
+
+.rodape {
+    padding: var(--espacamento-lg);
+    background-color: var(--cor-azul);
+    color: var(--cor-branco);
+    text-align: center;
+    margin-top: var(--espacamento-xl);
+}
+
+.rodape p {
+    font-size: var(--fonte-pequena);
+    opacity: 0.9;
+}
+
+/*
+============================================
+MEDIA QUERIES - RESPONSIVIDADE
+============================================
+*/
+
+/* TABLET (a partir de 768px) */
+@media (min-width: 768px) {
+    .galeria {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .sobre {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* DESKTOP (a partir de 1024px) */
+@media (min-width: 1024px) {
+    .galeria {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    main {
+        padding: 0 var(--espacamento-lg);
+    }
+}
+
+/*
+============================================
+RESUMO DOS ESTILOS DO MODAL
+============================================
+
+✅ BACKDROP:
+   - display: none (inicialmente oculto)
+   - position: fixed (fica fixo na tela)
+   - background: rgba(0, 0, 0, 0.7) (preto com transparência)
+   - z-index: 999 (fica por trás do modal)
+
+✅ MODAL:
+   - display: none (inicialmente oculto)
+   - position: fixed (fica fixo na tela)
+   - top: 50%, left: 50% (centraliza)
+   - transform: translate(-50%, -50%) (ajusta centralização)
+   - z-index: 1000 (fica por cima do backdrop)
+
+✅ CLASSE "ativo":
+   - Adiciona display: block (fica visível)
+   - JavaScript adiciona/remove essa classe
+
+✅ ANIMAÇÕES:
+   - fadeIn: Backdrop aparece suavemente
+   - slideIn: Modal desliza de cima para baixo
+   - zoomIn: Imagem aumenta de tamanho
+
+============================================
+*/
