@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalComum = document.getElementById('total-comum');
     const totalRara = document.getElementById('total-rara');
     const totalLendaria = document.getElementById('total-lendaria');
+    const totalIconica = document.getElementById('total-iconica');
 
     console.log('✅ Elementos selecionados:', {
         modal: modal ? '✓' : '✗',
@@ -159,7 +160,8 @@ document.addEventListener('DOMContentLoaded', function() {
             todas: 0,
             comum: 0,
             rara: 0,
-            lendaria: 0
+            lendaria: 0,
+            iconica: 0
         };
 
         // Percorre todas as figurinhas
@@ -179,6 +181,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     contagem.rara++;
                 } else if (raridade === 'lendaria') {
                     contagem.lendaria++;
+                } else if (raridade === 'iconica') {
+                    contagem.iconica++; 
                 }
             }
         });
@@ -188,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         totalComum.textContent = contagem.comum;
         totalRara.textContent = contagem.rara;
         totalLendaria.textContent = contagem.lendaria;
-
+        totalIconica.textContent = contagem.iconica;
         console.log('📊 Estatísticas atualizadas:', contagem);
     }
 

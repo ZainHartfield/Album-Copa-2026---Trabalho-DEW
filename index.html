@@ -71,6 +71,9 @@
         <button class="btn-filtro" data-filtro="lendaria">
             Lendária
         </button>
+        <button class="btn-filtro" data-filtro="iconica">
+            Icônica
+        </button>
     </nav>
 
     <!-- 
@@ -104,6 +107,10 @@
                     <h3>Lendária</h3>
                     <p class="numero" id="total-lendaria">0</p>
                 </article>
+                <article class="stat-card">
+                    <h3>Icônica</h3>
+                    <p class="numero" id="total-iconica">0</p>
+                </article>
             </div>
         </section>
 
@@ -131,73 +138,29 @@
             Esses atributos armazenam informações que o JavaScript
             vai usar quando o modal abrir
             -->
-            <article class="figurinha" data-raridade="comum" data-nome="Neymar Jr" data-imagem="https://via.placeholder.com/400x500?text=Neymar+Jr">
+            <article class="figurinha" data-raridade="comum" data-nome="Vini" data-imagem="https://via.placeholder.com/400x500?text=Neymar+Jr">
                 <div class="figurinha-imagem">
                     🇧🇷
                 </div>
                 <div class="figurinha-info">
-                    <h3>Neymar Jr</h3>
+                    <h3>Vini</h3>
                     <p class="raridade">Comum</p>
                 </div>
             </article>
 
             <!-- Figurinha 2 -->
-            <article class="figurinha" data-raridade="comum" data-nome="Vinicius Jr" data-imagem="https://via.placeholder.com/400x500?text=Vinicius+Jr">
+            <article class="figurinha" data-raridade="comum" data-nome="Raphinha" data-imagem="https://via.placeholder.com/400x500?text=Vinicius+Jr">
                 <div class="figurinha-imagem">
                     🇧🇷
                 </div>
                 <div class="figurinha-info">
-                    <h3>Vinicius Jr</h3>
+                    <h3>Raphinha</h3>
                     <p class="raridade">Comum</p>
                 </div>
             </article>
 
             <!-- Figurinha 3 -->
-            <article class="figurinha" data-raridade="rara" data-nome="Rodrygo" data-imagem="https://via.placeholder.com/400x500?text=Rodrygo">
-                <div class="figurinha-imagem">
-                    🇧🇷
-                </div>
-                <div class="figurinha-info">
-                    <h3>Rodrygo</h3>
-                    <p class="raridade">Rara</p>
-                </div>
-            </article>
-
-            <!-- Figurinha 4 -->
-            <article class="figurinha" data-raridade="rara" data-nome="Antony" data-imagem="https://via.placeholder.com/400x500?text=Antony">
-                <div class="figurinha-imagem">
-                    🇧🇷
-                </div>
-                <div class="figurinha-info">
-                    <h3>Antony</h3>
-                    <p class="raridade">Rara</p>
-                </div>
-            </article>
-
-            <!-- Figurinha 5 -->
-            <article class="figurinha" data-raridade="lendaria" data-nome="Pelé" data-imagem="https://via.placeholder.com/400x500?text=Pelé">
-                <div class="figurinha-imagem">
-                    🇧🇷
-                </div>
-                <div class="figurinha-info">
-                    <h3>Pelé</h3>
-                    <p class="raridade">Lendária</p>
-                </div>
-            </article>
-
-            <!-- Figurinha 6 -->
-            <article class="figurinha" data-raridade="lendaria" data-nome="Ronaldo" data-imagem="https://via.placeholder.com/400x500?text=Ronaldo">
-                <div class="figurinha-imagem">
-                    🇧🇷
-                </div>
-                <div class="figurinha-info">
-                    <h3>Ronaldo</h3>
-                    <p class="raridade">Lendária</p>
-                </div>
-            </article>
-
-            <!-- Figurinha 7 -->
-            <article class="figurinha" data-raridade="comum" data-nome="Alisson" data-imagem="https://via.placeholder.com/400x500?text=Alisson">
+            <article class="figurinha" data-raridade="comum" data-nome="Alisson" data-imagem="https://via.placeholder.com/400x500?text=Rodrygo">
                 <div class="figurinha-imagem">
                     🇧🇷
                 </div>
@@ -207,14 +170,124 @@
                 </div>
             </article>
 
-            <!-- Figurinha 8 -->
-            <article class="figurinha" data-raridade="rara" data-nome="Marquinhos" data-imagem="https://via.placeholder.com/400x500?text=Marquinhos">
+            <!-- Figurinha 4 -->
+            <article class="figurinha" data-raridade="comum" data-nome="Gabriel Jesus" data-imagem="https://via.placeholder.com/400x500?text=Antony">
                 <div class="figurinha-imagem">
                     🇧🇷
                 </div>
                 <div class="figurinha-info">
-                    <h3>Marquinhos</h3>
+                    <h3>Gabriel Jesus</h3>
+                    <p class="raridade">Comum</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 5 -->
+            <article class="figurinha" data-raridade="comum" data-nome="Paquetá" data-imagem="https://via.placeholder.com/400x500?text=Pelé">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Paquetá</h3>
+                    <p class="raridade">Comum</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 6 -->
+            <article class="figurinha" data-raridade="rara" data-nome="Casemiro" data-imagem="https://via.placeholder.com/400x500?text=Ronaldo">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Casemiro</h3>
                     <p class="raridade">Rara</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 7 -->
+            <article class="figurinha" data-raridade="rara" data-nome="Thiago Silva" data-imagem="https://via.placeholder.com/400x500?text=Alisson">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Thiago Silva</h3>
+                    <p class="raridade">Rara</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 8 -->
+            <article class="figurinha" data-raridade="rara" data-nome="Dida" data-imagem="https://via.placeholder.com/400x500?text=Marquinhos">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Dida</h3>
+                    <p class="raridade">Rara</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 9 -->
+            <article class="figurinha" data-raridade="iconica" data-nome="Neymar Jr" data-imagem="https://via.placeholder.com/400x500?text=Pelé">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Neymar Jr</h3>
+                    <p class="raridade">Icônica</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 10 -->
+            <article class="figurinha" data-raridade="iconica" data-nome="Pelé" data-imagem="https://via.placeholder.com/400x500?text=Marquinhos">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Pelé</h3>
+                    <p class="raridade">Icônica</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 11 -->
+            <article class="figurinha" data-raridade="rara" data-nome="Kaká" data-imagem="https://via.placeholder.com/400x500?text=Marquinhos">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Kaká</h3>
+                    <p class="raridade">Rara</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 12 -->
+            <article class="figurinha" data-raridade="lendaria" data-nome="Ronaldo 'Fenômeno'" data-imagem="https://via.placeholder.com/400x500?text=Marquinhos">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Ronaldo 'Fenômeno'</h3>
+                    <p class="raridade">Lendária</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 13 -->
+            <article class="figurinha" data-raridade="lendaria" data-nome="Cafu" data-imagem="https://via.placeholder.com/400x500?text=Marquinhos">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Cafu</h3>
+                    <p class="raridade">Lendária</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 14 -->
+            <article class="figurinha" data-raridade="lendaria" data-nome="Romário" data-imagem="https://via.placeholder.com/400x500?text=Marquinhos">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Romário</h3>
+                    <p class="raridade">Lendária</p>
                 </div>
             </article>
         </section>

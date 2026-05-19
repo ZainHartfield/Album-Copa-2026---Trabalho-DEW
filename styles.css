@@ -27,6 +27,7 @@ PASSO 1: RESET E VARIÁVEIS GLOBAIS
     --cor-fundo: #F5F1E8;
     --cor-branco: #FFFFFF;
     --cor-cinza: #5A5A5A;
+    --cor-laranja: #FF7F50;
 
     /* Espaçamentos (medidas relativas) */
     --espacamento-xs: 0.5rem;
@@ -477,6 +478,11 @@ para indicar que é clicável.
 .figurinha[data-raridade="lendaria"] {
     border-color: var(--cor-vermelho);
     box-shadow: 0 0 20px rgba(230, 57, 70, 0.3);
+}
+
+.figurinha[data-raridade="iconica"] {
+    border-color: var(--cor-laranja);
+    box-shadow: 0 0 20px rgb(255, 166, 0);
 }
 
 /* Efeito ao passar o mouse */
