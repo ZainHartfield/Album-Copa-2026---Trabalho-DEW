@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álbum de Figurinhas - Copa 2026</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- 
+    ============================================
+    MODAL/POPUP - ESTRUTURA
+    ============================================
+    
+    O modal é composto por:
+    1. modal-backdrop: Fundo escuro que fica por trás
+    2. modal: A janela com a figurinha em zoom
+    
+    Inicialmente, ambos estão ocultos (display: none no CSS)
+    Quando o usuário clica em uma figurinha, JavaScript adiciona
+    a classe "ativo" que muda para display: block
+    -->
+
+    <!-- Fundo escuro (backdrop) - clicando aqui fecha o modal -->
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+
+    <!-- Modal (janela com a figurinha em zoom) -->
+    <div class="modal" id="modal">
+        <!-- Botão de fechar (X) no canto superior direito -->
+        <button class="modal-fechar" id="modalFechar" aria-label="Fechar modal">×</button>
+        
+        <!-- Conteúdo do modal -->
+        <div class="modal-conteudo">
+            <!-- Imagem da figurinha em destaque -->
+            <img id="modalImagem" src="" alt="Figurinha em destaque" class="modal-imagem">
+            
+            <!-- Informações da figurinha -->
+            <div class="modal-info">
+                <h2 id="modalTitulo"></h2>
+                <p id="modalRaridade" class="modal-raridade"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+    ============================================
+    CABEÇALHO (HEADER)
+    ============================================
+    -->
+    <header class="cabecalho">
+        <h1>🏆 Álbum Copa 2026</h1>
+        <p class="descricao">Colecione todas as figurinhas dos jogadores</p>
+    </header>
+
+    <!-- 
+    ============================================
+    NAVEGAÇÃO (NAV) - FILTROS
+    ============================================
+    -->
+    <nav class="navegacao" aria-label="Filtros de figurinhas">
+        <button class="btn-filtro ativo" data-filtro="todas">
+            Todas
+        </button>
+        <button class="btn-filtro" data-filtro="comum">
+            Comum
+        </button>
+        <button class="btn-filtro" data-filtro="rara">
+            Rara
+        </button>
+        <button class="btn-filtro" data-filtro="lendaria">
+            Lendária
+        </button>
+    </nav>
+
+    <!-- 
+    ============================================
+    CONTEÚDO PRINCIPAL (MAIN)
+    ============================================
+    -->
+    <main>
+        <!-- 
+        ============================================
+        SEÇÃO DE ESTATÍSTICAS
+        ============================================
+        -->
+        <section class="estatisticas" aria-labelledby="titulo-stats">
+            <h2 id="titulo-stats">Estatísticas da Coleção</h2>
+            
+            <div class="stats-grid">
+                <article class="stat-card">
+                    <h3>Total</h3>
+                    <p class="numero" id="total-figurinhas">0</p>
+                </article>
+                <article class="stat-card">
+                    <h3>Comum</h3>
+                    <p class="numero" id="total-comum">0</p>
+                </article>
+                <article class="stat-card">
+                    <h3>Rara</h3>
+                    <p class="numero" id="total-rara">0</p>
+                </article>
+                <article class="stat-card">
+                    <h3>Lendária</h3>
+                    <p class="numero" id="total-lendaria">0</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 
+        ============================================
+        GALERIA DE FIGURINHAS
+        ============================================
+        
+        IMPORTANTE: Cada figurinha agora tem atributos data-* 
+        que armazenam informações usadas pelo modal:
+        - data-raridade: comum, rara, lendaria
+        - data-nome: Nome do jogador
+        - data-imagem: URL da imagem (será exibida no modal)
+        
+        Quando o usuário clica, JavaScript extrai essas informações
+        e as coloca no modal.
+        -->
+        <section class="galeria" aria-labelledby="titulo-galeria">
+            <h2 id="titulo-galeria">Figurinhas</h2>
+            
+            <!-- 
+            Figurinha 1
+            
+            NOVO: Adicionamos data-nome e data-imagem
+            Esses atributos armazenam informações que o JavaScript
+            vai usar quando o modal abrir
+            -->
+            <article class="figurinha" data-raridade="comum" data-nome="Neymar Jr" data-imagem="https://via.placeholder.com/400x500?text=Neymar+Jr">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Neymar Jr</h3>
+                    <p class="raridade">Comum</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 2 -->
+            <article class="figurinha" data-raridade="comum" data-nome="Vinicius Jr" data-imagem="https://via.placeholder.com/400x500?text=Vinicius+Jr">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Vinicius Jr</h3>
+                    <p class="raridade">Comum</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 3 -->
+            <article class="figurinha" data-raridade="rara" data-nome="Rodrygo" data-imagem="https://via.placeholder.com/400x500?text=Rodrygo">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Rodrygo</h3>
+                    <p class="raridade">Rara</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 4 -->
+            <article class="figurinha" data-raridade="rara" data-nome="Antony" data-imagem="https://via.placeholder.com/400x500?text=Antony">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Antony</h3>
+                    <p class="raridade">Rara</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 5 -->
+            <article class="figurinha" data-raridade="lendaria" data-nome="Pelé" data-imagem="https://via.placeholder.com/400x500?text=Pelé">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Pelé</h3>
+                    <p class="raridade">Lendária</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 6 -->
+            <article class="figurinha" data-raridade="lendaria" data-nome="Ronaldo" data-imagem="https://via.placeholder.com/400x500?text=Ronaldo">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Ronaldo</h3>
+                    <p class="raridade">Lendária</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 7 -->
+            <article class="figurinha" data-raridade="comum" data-nome="Alisson" data-imagem="https://via.placeholder.com/400x500?text=Alisson">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Alisson</h3>
+                    <p class="raridade">Comum</p>
+                </div>
+            </article>
+
+            <!-- Figurinha 8 -->
+            <article class="figurinha" data-raridade="rara" data-nome="Marquinhos" data-imagem="https://via.placeholder.com/400x500?text=Marquinhos">
+                <div class="figurinha-imagem">
+                    🇧🇷
+                </div>
+                <div class="figurinha-info">
+                    <h3>Marquinhos</h3>
+                    <p class="raridade">Rara</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- 
+        ============================================
+        SEÇÃO SOBRE O PROJETO
+        ============================================
+        -->
+        <section class="sobre" aria-labelledby="titulo-sobre">
+            <h2 id="titulo-sobre">Sobre Este Projeto</h2>
+            
+            <article class="conceito">
+                <h3>📝 HTML Semântico</h3>
+                <p>
+                    Usamos tags semânticas como &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, 
+                    &lt;section&gt; e &lt;article&gt; para descrever o significado do conteúdo.
+                </p>
+            </article>
+
+            <article class="conceito">
+                <h3>♿ Acessibilidade</h3>
+                <p>
+                    Adicionamos atributos como aria-label, aria-labelledby e alt em imagens
+                    para que leitores de tela entendam o conteúdo.
+                </p>
+            </article>
+
+            <article class="conceito">
+                <h3>📱 Responsividade</h3>
+                <p>
+                    O site funciona em celular, tablet e desktop usando CSS Grid e Flexbox
+                    com media queries para adaptar o layout.
+                </p>
+            </article>
+
+            <article class="conceito">
+                <h3>✨ Animações</h3>
+                <p>
+                    Adicionamos animações CSS para tornar a experiência mais interativa
+                    e visualmente atraente.
+                </p>
+            </article>
+
+            <article class="conceito">
+                <h3>🖱️ Modal/Popup</h3>
+                <p>
+                    Clique em qualquer figurinha para ver um zoom em um modal.
+                    Clique no X ou fora do modal para fechar.
+                </p>
+            </article>
+        </section>
+    </main>
+
+    <!-- 
+    ============================================
+    RODAPÉ (FOOTER)
+    ============================================
+    -->
+    <footer class="rodape">
+        <p>&copy; 2026 - Álbum de Figurinhas da Copa. Projeto Educacional.</p>
+    </footer>
+
+    <!-- 
+    ============================================
+    LINK PARA O JAVASCRIPT
+    ============================================
+    -->
+    <script src="script.js"></script>
+</body>
+</html>
