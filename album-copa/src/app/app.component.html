@@ -1,0 +1,57 @@
+<div class="modal-backdrop" id="modalBackdrop" [class.ativo]="modalVisivel" (click)="fecharModal()"></div>
+
+<div class="modal" id="modal" [class.ativo]="modalVisivel">
+    <button class="modal-fechar" id="modalFechar" (click)="fecharModal()">×</button>
+    <div class="modal-conteudo">
+        <img [src]="figurinhaSelecionada.imagem" [alt]="figurinhaSelecionada.nome" class="modal-imagem" id="modalImagem">
+        
+        <div class="modal-info">
+            <h2 class="modal-titulo" id="modalTitulo">{{ figurinhaSelecionada.nome }}</h2>
+            <p class="modal-raridade" id="modalRaridade" [attr.data-raridade]="figurinhaSelecionada.raridade">
+                {{ figurinhaSelecionada.raridade | titlecase }}
+            </p>
+        </div>
+    </div>
+</div>
+
+<header class="cabecalho">
+    <div class="cabecalho-conteudo">
+        <h1>Álbum de Figurinhas - Copa 2026</h1>
+        <p>Colecione os maiores craques do futebol mundial</p>
+    </div>
+</header>
+
+<nav class="navegacao">
+    <button class="btn-filtro" [class.ativo]="filtroAtivo === 'todas'" (click)="filtrarFigurinhas('todas')">Todas</button>
+    <button class="btn-filtro" [class.ativo]="filtroAtivo === 'comum'" (click)="filtrarFigurinhas('comum')">Comum</button>
+    <button class="btn-filtro" [class.ativo]="filtroAtivo === 'rara'" (click)="filtrarFigurinhas('rara')">Rara</button>
+    <button class="btn-filtro" [class.ativo]="filtroAtivo === 'iconica'" (click)="filtrarFigurinhas('iconica')">Icônica</button>
+    <button class="btn-filtro" [class.ativo]="filtroAtivo === 'lendaria'" (click)="filtrarFigurinhas('lendaria')">Lendária</button>
+</nav>
+
+<main>
+    <section class="estatisticas">
+        <div class="stats-grid">
+            <div class="stat-card"><h3>Total</h3><p class="numero" id="total-todas">{{ totalTodas }}</p></div>
+            <div class="stat-card"><h3>Comum</h3><p class="numero" id="total-comum">{{ totalComum }}</p></div>
+            <div class="stat-card"><h3>Rara</h3><p class="numero" id="total-rara">{{ totalRara }}</p></div>
+            <div class="stat-card"><h3>Icônica</h3><p class="numero" id="total-iconica">{{ totalIconica }}</p></div>
+            <div class="stat-card"><h3>Lendária</h3><p class="numero" id="total-lendaria">{{ totalLendaria }}</p></div>
+        </div>
+    </section>
+
+    <section class="galeria">
+        <article *ngFor="let fig of figurinhasFiltradas" 
+                 class="figurinha" 
+                 [attr.data-raridade]="fig.raridade" 
+                 (click)="abrirModal(fig)">
+            <div class="figurinha-moldura">
+                <span class="bandeira-pais">{{ fig.bandeira }}</span>
+            </div>
+            <div class="figurinha-info">
+                <h3 class="figurinha-nome">{{ fig.nome }}</h3>
+                <p class="figurinha-raridade">{{ fig.raridade | titlecase }}</p>
+            </div>
+        </article>
+    </section>
+</main>
